@@ -2,7 +2,9 @@ import EventList from "@/components/events/event-list";
 import { AppEvent } from "@/dummy-data";
 import { getFeaturedEvents } from "@/helpers/api-utils";
 import { GetStaticProps, InferGetStaticPropsType } from "next";
-import React from "react";
+import Head from "next/head";
+import React, { Fragment } from "react";
+import NewsletterRegistration from "@/components/input/newsletter-registration";
 
 interface Props {
   events: AppEvent[];
@@ -10,9 +12,17 @@ interface Props {
 
 const Home = ({ events }: InferGetStaticPropsType<typeof getStaticProps>) => {
   return (
-    <div>
+    <Fragment>
+      <Head>
+        <title>Featured Events</title>
+        <meta
+          name="description"
+          content="Featured events for upgrading your skills"
+        />
+      </Head>
+      <NewsletterRegistration />
       <EventList items={events} />
-    </div>
+    </Fragment>
   );
 };
 

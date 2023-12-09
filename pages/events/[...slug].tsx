@@ -6,6 +6,7 @@ import Button from "../../components/ui/button";
 import ErrorAlert from "../../components/ui/error-alert";
 import { GetServerSideProps, InferGetServerSidePropsType } from "next";
 import { getFilteredEvents } from "@/helpers/api-utils";
+import Head from "next/head";
 
 interface Props {
   events: AppEvent[];
@@ -19,6 +20,13 @@ const EventListFilterPage = ({
   if (!events || events.length === 0) {
     return (
       <Fragment>
+        <Head>
+          <title>Filtered Events</title>
+          <meta
+            name="description"
+            content="Filtered events for upgrading your skills"
+          />
+        </Head>
         <ErrorAlert>
           <p className="center">No events found</p>
         </ErrorAlert>

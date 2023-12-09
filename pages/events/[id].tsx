@@ -4,8 +4,9 @@ import { Fragment } from "react";
 import EventContent from "../../components/event-detail/event-content";
 import EventLogistics from "../../components/event-detail/event-logistics";
 import EventSummary from "../../components/event-detail/event-summary";
-import ErrorAlert from "../../components/ui/error-alert";
-import { AppEvent } from "../../dummy-data";
+import { AppEvent } from "@/dummy-data";
+import Head from "next/head";
+import Comments from "@/components/input/comments";
 
 interface Props {
   event: AppEvent;
@@ -24,6 +25,10 @@ const EventDetailPage = ({
 
   return (
     <Fragment>
+      <Head>
+        <title>{event.title}</title>
+        <meta name="description" content={event.description} />
+      </Head>
       <EventSummary title={event.title} />
       <EventLogistics
         date={event.date}
@@ -34,6 +39,7 @@ const EventDetailPage = ({
       <EventContent>
         <p>{event.description}</p>
       </EventContent>
+      <Comments eventId={event.id} initialShowComments={true} />
     </Fragment>
   );
 };
